@@ -19,8 +19,8 @@ class CustomDotController extends StatelessWidget {
               (index) => AnimatedContainer(
                 duration: const Duration(milliseconds: 900),
                 margin: const EdgeInsets.only(right: 5),
-                width: index == controller.currentPage ? 10 : 5,
-                height: 5,
+                width: index == controller.currentPage ? 12 : 6,
+                height: 6,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: index == controller.currentPage ? AppColors.primaryColor : AppColors.gray,

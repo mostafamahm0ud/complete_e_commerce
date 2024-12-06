@@ -1,5 +1,5 @@
 import 'package:complete_e_commerce/data/dataSource/static.dart';
-import 'package:complete_e_commerce/views/screen/login_screen.dart';
+import 'package:complete_e_commerce/views/screen/Auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +15,7 @@ class OnBoardingControllerImp extends OnBoardingController {
   onNext() {
     currentPage++;
     if (currentPage > onBoardingList.length - 1) {
-      Get.off(LoginScreen());
+      Get.off(SignInScreen());
     } else {
       pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 900), curve: Curves.easeInOut);
