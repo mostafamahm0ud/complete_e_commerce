@@ -8,16 +8,19 @@ class CustomTextFormField extends StatelessWidget {
     required this.hint,
     required this.controller,
     required this.icon,
+    required this.validator, required this.isNumber,
   });
-
+  final bool isNumber;
   final String label, hint;
   final Icon icon;
-
+  final String? Function(String?) validator;
   final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: isNumber ? TextInputType.numberWithOptions(decimal: true) : TextInputType.text,
+      validator: validator,
       controller: controller,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10),

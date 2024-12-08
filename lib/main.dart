@@ -1,5 +1,5 @@
+import 'package:complete_e_commerce/binding.dart';
 import 'package:complete_e_commerce/core/constant/app_routes.dart';
-import 'package:complete_e_commerce/core/constant/colors.dart';
 import 'package:complete_e_commerce/core/localization/change_local.dart';
 import 'package:complete_e_commerce/core/localization/translation.dart';
 import 'package:complete_e_commerce/core/services/services.dart';
@@ -22,12 +22,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       translations: MyTranslations(),
       locale: localeController.language,
-      theme: ThemeData(
-        fontFamily: 'PlayfairDisplay',
-        scaffoldBackgroundColor: AppColors.backgroundColor,
-      ),
+      theme: localeController.appTheme,
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.selectLanguage,
+      initialBinding: MyBinding(),
       routes: routes,
     );
   }

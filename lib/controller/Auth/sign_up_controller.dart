@@ -8,12 +8,21 @@ abstract class SignUpController extends GetxController {
 }
 
 class SignUpControllerImp extends SignUpController {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late TextEditingController userName;
   late TextEditingController email;
   late TextEditingController phoneNumber;
   late TextEditingController password;
   @override
-  signUp() {}
+  signUp() {
+    var formdata = formKey.currentState;
+    if (formdata!.validate()) {
+      print('valid');
+      Get.offNamed(AppRoutes.checkEmail);
+    } else {
+      print('not valid');
+    }
+  }
 
   @override
   goToSignIn() {

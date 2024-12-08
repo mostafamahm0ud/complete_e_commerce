@@ -9,10 +9,17 @@ abstract class SignInController extends GetxController {
 }
 
 class SignInControllerImp extends SignInController {
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
   late TextEditingController email;
   late TextEditingController password;
   @override
-  signIn() {}
+  signIn() {
+    if (formKey.currentState!.validate()) {
+      print('Done');
+    } else {
+      print('Not valid');
+    }
+  }
 
   @override
   goToSignUp() {
@@ -25,7 +32,7 @@ class SignInControllerImp extends SignInController {
     password = TextEditingController();
     super.onInit();
   }
-  
+
   @override
   goToForgetPassword() {
     Get.toNamed(AppRoutes.forgetPassword);
