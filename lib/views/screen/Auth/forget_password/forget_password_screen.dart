@@ -1,4 +1,5 @@
-import 'package:complete_e_commerce/controller/Auth/forget_password_controller.dart';
+import 'package:complete_e_commerce/controller/forgetPassword/forget_password_controller.dart';
+import 'package:complete_e_commerce/core/class/api_manage_statuts_view.dart';
 import 'package:complete_e_commerce/core/constant/colors.dart';
 import 'package:complete_e_commerce/core/constant/text_stely.dart';
 import 'package:complete_e_commerce/core/function/validata_input_funcation.dart';
@@ -13,8 +14,6 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ForgetPasswordControllerImp controller =
-    //     Get.put(ForgetPasswordControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -26,41 +25,45 @@ class ForgetPasswordScreen extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
       ),
       body: GetBuilder<ForgetPasswordControllerImp>(
-        builder: (controller) => Container(
-          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-          child: Form(
-            key: controller.formKey,
-            child: ListView(
-              children: [
-                CustomHeaderAndContantAuth(
-                  header: 'Check Email',
-                  content:
-                      'Enter your email address to receive a password reset code',
+        builder: (controller) =>  ApiManageStatutsRequest(
+          statusRequest: controller.apiStatusRequest,
+          widget: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+                  child: Form(
+                    key: controller.formKey,
+                    child: ListView(
+                      children: [
+                        CustomHeaderAndContantAuth(
+                          header: 'Check Email',
+                          content:
+                              'Enter your email address to receive a password reset code',
+                        ),
+                        CustomTextFormField(
+                          controller: controller.email,
+                          label: 'Email',
+                          hint: 'Enter your email address',
+                          icon: Icon(Icons.email_outlined),
+                          validator: (value) {
+                            return validataInput(value!, 30, 5, "email");
+                          },
+                          isNumber: false,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        CustomButtonAuth(
+                          buttonTo: 'Check',
+                          buttonColor: AppColors.primaryColor,
+                          textColor: Colors.white,
+                          onPressed: controller.checkEmail,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                CustomTextFormField(
-                  controller: controller.email,
-                  label: 'Email',
-                  hint: 'Enter your email address',
-                  icon: Icon(Icons.email_outlined),
-                  validator: (value) {
-                    return validataInput(value!, 30, 5, "email");
-                  }, isNumber: false,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                CustomButtonAuth(
-                  buttonTo: 'Check',
-                  buttonColor: AppColors.primaryColor,
-                  textColor: Colors.white,
-                  onPressed: controller.checkEmail,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-              ],
-            ),
-          ),
         ),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:complete_e_commerce/binding.dart';
-import 'package:complete_e_commerce/core/constant/app_routes.dart';
 import 'package:complete_e_commerce/core/localization/change_local.dart';
 import 'package:complete_e_commerce/core/localization/translation.dart';
 import 'package:complete_e_commerce/core/services/services.dart';
@@ -24,9 +23,10 @@ class MyApp extends StatelessWidget {
       locale: localeController.language,
       theme: localeController.appTheme,
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.selectLanguage,
+      // initialRoute: AppRoutes.selectLanguage,
       initialBinding: MyBinding(),
-      routes: routes,
+      // routes: routes,
+      getPages: route,
     );
   }
 }

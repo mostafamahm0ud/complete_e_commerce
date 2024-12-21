@@ -1,4 +1,5 @@
-import 'package:complete_e_commerce/controller/Auth/verify_code_controller.dart';
+import 'package:complete_e_commerce/controller/forgetPassword/verify_code_reset_controller.dart';
+import 'package:complete_e_commerce/core/class/api_manage_statuts_view.dart';
 import 'package:complete_e_commerce/core/constant/colors.dart';
 import 'package:complete_e_commerce/core/constant/text_stely.dart';
 import 'package:complete_e_commerce/views/widget/Auth/custom_header_content.dart';
@@ -11,7 +12,6 @@ class VerifyCodeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    VerifyCodeControllerImp controller = Get.put(VerifyCodeControllerImp());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -22,33 +22,40 @@ class VerifyCodeScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: AppColors.backgroundColor,
       ),
-      body: Center(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-          child: ListView(
-            children: [
-              CustomHeaderAndContantAuth(
-                header: 'Verify Code',
-                content: 'Enter the code that has been sent to\nTest@gmail.com',
+      body: GetBuilder<VerifyCodeControllerImp>(
+        builder: (controller) {
+          return ApiManageStatutsRequest(
+            statusRequest: controller.apiStatusRequest,
+            widget: Center(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+                child: ListView(
+                  children: [
+                    CustomHeaderAndContantAuth(
+                      header: 'Verify Code',
+                      content: 'Enter the code that has been sent to\nTest@gmail.com',
+                    ),
+                    OtpTextField(
+                      fieldWidth: 50.0,
+                      numberOfFields: 5,
+                      borderColor: AppColors.primaryColor,
+                      //set to true to show as box or false to show as dash
+                      showFieldAsBox: true,
+                      //runs when a code is typed in
+                      onCodeChanged: (String code) {
+                        //handle validation or checks here
+                      },
+                      //runs when every textfield is filled
+                      onSubmit: (String verificationCode) {
+                        controller.goToResetPassword(verificationCode);
+                      }, // end onSubmit
+                    ),
+                  ],
+                ),
               ),
-              OtpTextField(
-                fieldWidth: 50.0,
-                numberOfFields: 5,
-                borderColor: AppColors.primaryColor,
-                //set to true to show as box or false to show as dash
-                showFieldAsBox: true,
-                //runs when a code is typed in
-                onCodeChanged: (String code) {
-                  //handle validation or checks here
-                },
-                //runs when every textfield is filled
-                onSubmit: (String verificationCode) {
-                  controller.goToResetPassword();
-                }, // end onSubmit
-              ),
-            ],
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }

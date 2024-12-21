@@ -1,6 +1,6 @@
 import 'package:complete_e_commerce/controller/on_boarding_controller.dart';
 import 'package:complete_e_commerce/core/constant/text_stely.dart';
-import 'package:complete_e_commerce/data/dataSource/static.dart';
+import 'package:complete_e_commerce/data/dataSource/static/static.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

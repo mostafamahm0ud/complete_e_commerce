@@ -3,7 +3,7 @@ import 'package:complete_e_commerce/data/model/onboarding_model.dart';
 
 List<OnboardingModel> onBoardingList = [
   OnboardingModel(
-    image: AppAssets.onboardingimage4,
+    image: AppAssets.onboardingimage1,
     title: 'Choose Product',
     description:
         'We Have a 100k+ Products \n Choose your favorite product \n From our E-Commerce App ',
@@ -20,7 +20,7 @@ List<OnboardingModel> onBoardingList = [
     description: 'realiable delivery service \n and fast delivery time',
   ),
   OnboardingModel(
-    image: AppAssets.onboardingimage1,
+    image: AppAssets.onboardingimage4,
     title: 'Track Your Order',
     description:
         'Best tracking system \n you can track your order \n easily and know where it is now',

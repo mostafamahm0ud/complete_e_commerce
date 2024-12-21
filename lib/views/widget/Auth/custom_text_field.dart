@@ -8,9 +8,14 @@ class CustomTextFormField extends StatelessWidget {
     required this.hint,
     required this.controller,
     required this.icon,
-    required this.validator, required this.isNumber,
+    required this.validator,
+    required this.isNumber,
+    this.isPassword,
+    this.showPassword,
   });
   final bool isNumber;
+  final bool? isPassword;
+  final Function()? showPassword;
   final String label, hint;
   final Icon icon;
   final String? Function(String?) validator;
@@ -19,12 +24,17 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: isNumber ? TextInputType.numberWithOptions(decimal: true) : TextInputType.text,
+      keyboardType: isNumber
+          ? TextInputType.numberWithOptions(decimal: true)
+          : TextInputType.text,
       validator: validator,
       controller: controller,
+      obscureText: isPassword ?? false,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 10),
-        suffixIcon: icon,
+        suffixIcon: isPassword == null
+            ? icon
+            : InkWell(onTap: showPassword, child: icon),
         floatingLabelBehavior: FloatingLabelBehavior.always,
         label: Container(
           margin: EdgeInsets.only(left: 5),
